@@ -51,8 +51,8 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Web1                 |Web Server    | 10.0.0.5                 | Linux            |
 | Web2                 |Web Server    | 10.0.0.6                 | Linux            |
 | ACME-VM1             |ELK Server    | 10.1.0.4 /52.138.103.192 | Linux            |
-| Load Balancer        |Load Balancer | Dynamic IP               | Linux            |
-| Workstation          |Access Control| 64.231.21.12             | Linux            |
+| Load Balancer        |Load Balancer | Dynamic IP (Public IP)   | Linux            |
+| Workstation          |Access Control| External IP or PublicIP  | Linux            |
 
 ### Access Policies
 
