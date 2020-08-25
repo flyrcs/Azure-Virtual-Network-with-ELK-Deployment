@@ -66,12 +66,12 @@ Machines within the network can only be accessed by _____.
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible  | Allowed IP Addresses              |
-|----------|----------------------|-----------------------------------|
-| Jump Box |      No              | MyPublicIPAddress                 |
-|   Web1   |      Yes             |   Any on Port 80                  |
-|   Web2   |      Yes             |   Any on Port 80                  |
-| ACME-VM1 |      No              | MyPublicIPAddress using Port 5601 | 
+| Name     | Publicly Accessible  | Allowed IP Addresses                  |
+|----------|----------------------|---------------------------------------|
+| Jump Box |      No              | Workstation Public IP                 |
+|   Web1   |      Yes             |   Any on Port 80                      |
+|   Web2   |      Yes             |   Any on Port 80                      |
+| ACME-VM1 |      No              | Workstation Public IP using Port 5601 | 
 
 ### Elk Configuration
 
