@@ -83,7 +83,7 @@ The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name                 | Function     | IP Address               | Operating System |
-|----------------------|----------    |--------------------------|------------------|
+|----------------------|---------- ---|--------------------------|------------------|
 | Jump-Box-Provisioner | Gateway      | 10.0.0.4 /52.242.18.55   | Linux            |
 | Web1                 |Web Server    | 10.0.0.5                 | Linux            |
 | Web2                 |Web Server    | 10.0.0.6                 | Linux            |
@@ -120,33 +120,37 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 The playbook implements the following tasks:
 
 - Specify a different group of machines as well as a different remote user 
-      ```bash
+    ```bash
       - name: Config elk VM with Docker
         hosts: elk
         remote_user: sysadmin
         become: true
         tasks:
-
+    ``` 
 - Increase System Memory :
-     ```yaml
+    ```yaml
      - name: Use more memory
       sysctl:
         name: vm.max_map_count
         value: '262144'
         state: present
         reload: yes
-
+    ```
 - Install the following services:
-      - `docker.io`
-      - `python3-pip`
-      - `docker`, which is the Docker Python pip module.
-
+    ```bash
+       `docker.io`
+       `python3-pip`
+       `docker`, which is the Docker Python pip module.
+    ``` 
 - Launching and Exposing the container with these published ports:
-    - `5601:5601` 
-    - `9200:9200`
-    - `5044:5044`
+    ```bash
+     `5601:5601` 
+     `9200:9200`
+     `5044:5044`
+    ```
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. ![](Images/docker_ps_output.JPG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web1.PNG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web2.PNG). The status should be up.
+The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. ![](Images/docker_ps_output.JPG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web1.PNG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web2.PNG)
+  - The status should be up.
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines: _Web1 and Web2_
@@ -167,14 +171,16 @@ SSH into the control node and follow the steps below:
 
 For ELK VM Configuration: 
 - Copy the [Ansible ELK Installation and VM Configuration ](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/install-elk.yml) 
-- Run the playbook (`ansible-playbook install-elk.yml`)
+- Run the playbook using this command :  `ansible-playbook install-elk.yml`
 
 For FILEBEAT:
-- Download Filebeat playbook: `curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml`
-- Copy the  /etc/ansible/files/filebeat-config.yml file to  /etc/filebeat/filebeat-playbook.yml
+- Download Filebeat playbook: 
+  - `curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml`
+- Copy the  '/etc/ansible/files/filebeat-config.yml' file to  '/etc/filebeat/filebeat-playbook.yml'
 - Update the filebeat-playbook.yml file to include installer `curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb`
 - Update the filebeat-config.yml file 
 root@c1e0a059c0b0:/etc/ansible/files# nano filebeat-config.yml
+```bash
 output.elasticsearch:
   #Array of hosts to connect to.
  hosts: ["10.1.0.4:9200"]
@@ -183,8 +189,8 @@ output.elasticsearch:
 
  setup.kibana:
   host: "10.1.0.4:5601"
-
-- Run the playbook, (`ansible-playbook filebeat-playbook.yml`) and navigate to _Kibana > Logs : Add log data > System logs > 5:Module Status > Check data_ to check that the installation worked as expected. 
+```
+- Run the playbook using this command `ansible-playbook filebeat-playbook.yml` and navigate to _Kibana > Logs : Add log data > System logs > 5:Module Status > Check data_ to check that the installation worked as expected. 
 
 For METRICBEAT: 
 - Download Metricbeat playbook: 
@@ -305,16 +311,16 @@ setup.kibana:
   - Test Kibana on localhost: _sysadmin@10.1.0.4: curl localhost:5601/app/kibana_
 
 Other Command List : 
-```bash
-`sudo apt-get update` 				                        - this will update all packages
-`sudo apt install docker.io`				                  - install docker application		
-`sudo service docker start`				                    - start the docker application
-`systemctl status docker`				                      - status of the docker application
-`sudo docker pull cyberxsecurity/ansible`	            - download the docker file 
-`sudo docker run -ti cyberxsecurity/ansible bash`     – run and create a docker image
-`sudo docker start <image-name>`                      - starts the image specified
-`sudo docker ps -a`                                   - list all active/inactive containers       
-`sudo docker attach <image-name>`                     - effectively sshing into the ansible container
-`ssh-keygen`                                          - create a ssh key 
-`ansible -m ping all`                                 - check the connection of ansible containers
-```
+|            COMMAND                               | PURPOSE                                          |
+|--------------------------------------------------|--------------------------------------------------|                         
+|`sudo apt-get update` 				                     |  this will update all packages                   |         
+|`sudo apt install docker.io`				               |  install docker application		                  |   
+|`sudo service docker start`				               |  start the docker application                    |
+|`systemctl status docker`				                 |  status of the docker application                |
+|`sudo docker pull cyberxsecurity/ansible`	       |  download the docker file                        |
+|`sudo docker run -ti cyberxsecurity/ansible bash` |  run and create a docker image                   |
+|`sudo docker start <image-name>`                  |  starts the image specified                      |
+|`sudo docker ps -a`                               |  list all active/inactive containers             |
+|`sudo docker attach <image-name>`                 |  effectively sshing into the ansible |container  |
+|`ssh-keygen`                                      |  create a ssh key                                |
+|`ansible -m ping all`                             |  check the connection of ansible containers      |
