@@ -17,16 +17,19 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 Download the _ansible.cfg_ configuration file on this website https://ansible.com/  and edit or copy [Ansible Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ansible.cfg) to your /etc/ansible directory
   - For ansible.cfg edit:  
+    ```bash
     cd /etc/ansible/	
     nano ansible.cfg
     CTRL + W > enter remote_user
     change `remote_user = sysadmin`
-
+    ```
 Assign username and SSH Public Key for Web1, Web2, ELK Virtual Machine in Azure GUI
 - Web1 / Web2 / ELK Server  > Reset Password > Reset SSH Public Key
+    ```bash
       username: sysadmin
       SSH Key : copy id_rsa.pub from the ansible control node in .ssh/ directory. 
-  To get the SSH Key run this command: 
+    ```
+- To get the SSH Key run this command: 
     1. ~/.ssh# ssh-keygen
     2. ~/.ssh# cat id_rsa.pub
 
