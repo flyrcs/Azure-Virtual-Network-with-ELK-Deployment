@@ -16,7 +16,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 - [Metricbeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/metricbeat-config.yml)
 
 Download the _ansible.cfg_ configuration file on this website https://ansible.com/  and edit or copy [Ansible Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ansible.cfg) to your /etc/ansible directory
-  For ansible.cfg edit:  
+  - For ansible.cfg edit:  
     cd /etc/ansible/	
     nano ansible.cfg
     CTRL + W > enter remote_user
@@ -89,7 +89,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
      - Go to your Chrome browser and type http://[Load-Balancer-External-IP]/setup.php 
      - See this image if successful : [DVWA Redundancy Test](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/DVWA_Testing_Redundancy.jpg)
   2. Turn off one of your VMs (Web1 or Web2) from the Azure portal. Confirm if you can still access the DVWA website.
-  3. Finally turning off both VMs making sure there are no access. [See image](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/DVWA_Test_Web1_Web2_OFF.jpg)  
+  3. Finally turning off both VMs making sure there are no access. [See image](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/DVWA_Test_Web1_Web2_OFF.jpg) 
 
 ### Access Policies
 
