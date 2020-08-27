@@ -297,7 +297,7 @@ setup.kibana:
 
 Copy the raw Metricbeat Module Configuration from web to  the /etc/ansible/files/ directory:
  - `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml' 
-    - ``` Note : the metricbeat-config.yml as our metricbeat configuration file. ``` 
+    - Note : the metricbeat-config.yml as our metricbeat configuration file. ``` 
 
 See the final solution of the [Metricbeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/metricbeat-config.yml)
 
