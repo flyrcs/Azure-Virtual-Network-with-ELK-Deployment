@@ -153,16 +153,17 @@ The following screenshot displays the result of running `docker ps` after succes
   - The status should be up.
 
 ### Target Machines & Beats
-This ELK server is configured to monitor the following machines: _Web1 and Web2_
-Web1 : 10.0.0.5
-Web2 : 10.0.0.6
+This ELK server is configured to monitor the following machines: 
+ - Web1 : 10.0.0.5
+ - Web2 : 10.0.0.6
 
-We have installed the following Beats on these machines: _ELK Server, Web1 and Web2_
-The ELK Stack Installed are: _FileBeat and MetricBeat_
+We have installed the following Beats on these machines: 
+ - ELK Server, Web1 and Web2
+ - The ELK Stack Installed are: _FileBeat and MetricBeat_
 
 These Beats allow us to collect the following information from each machine:
-_Filebeat:    log events_
-_Metricbeat:  metrics and system statistics_
+ - Filebeat:    _log events_
+ - Metricbeat:  _metrics and system statistics_
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
