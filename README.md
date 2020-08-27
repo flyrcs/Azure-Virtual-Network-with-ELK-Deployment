@@ -119,7 +119,7 @@ The playbook implements the following tasks:
     - `9200:9200`
     - `5044:5044`
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. ![](Images/docker_ps_output.JPG) ![](Images/Docker PS Ouput/docker_ps_output_Web1.JPG). The status should be up.
+The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. ![](Images/docker_ps_output.JPG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web1.JPG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web2.JPG). The status should be up.
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines: _Web1 and Web2_
