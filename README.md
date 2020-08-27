@@ -83,7 +83,7 @@ The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name                 | Function     | IP Address               | Operating System |
-|----------------------|---------- ---|--------------------------|------------------|
+|----------------------|--------------|--------------------------|------------------|
 | Jump-Box-Provisioner | Gateway      | 10.0.0.4 /52.242.18.55   | Linux            |
 | Web1                 |Web Server    | 10.0.0.5                 | Linux            |
 | Web2                 |Web Server    | 10.0.0.6                 | Linux            |
