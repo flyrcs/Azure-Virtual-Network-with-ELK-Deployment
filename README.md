@@ -6,19 +6,16 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _yml_ and _config_ file may be used to install only certain pieces of it, such as Filebeat.
 
-Ansible Playbook: ![](Ansible/my-playbook1.yml)
-etc/ansible/hosts: ![](Ansible/hosts)
-etc/ansible: ![](Ansible/ansible.cfg)
+- [Ansible Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/my-playbook1.yml)
+- [Ansible Hosts](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/hosts)
+- [Ansible Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ansible.cfg)
+- [ELK Installation and VM Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/install-elk.yml) 
+- [Filebeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/filebeat-playbook.yml)
+- [Filebeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/filebeat-config.yml)
+- [Metricbeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/metricbeat-paybook.yml)
+- [Metricbeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/metricbeat-config.yml)
 
-Filebeat Playbook: ![](Ansible/ELK_Stack/filebeat-playbook.yml)
-Filebeat Config file: ![](Ansible/filebeat-config.yml)
-
-Metricbeat Playbook: ![](Ansible/ELK_Stack/metricbeat-paybook.yml)
-Metricbeat Config file: ![](Ansible/metricbeat-config.yml)
-
-ELK Installation and VM Configuration : ![](Ansible/ELK_Stack/install-elk.yml) 
-
-Download the _ansible.cfg_ configuration file on this website https://ansible.com/  and edit or copy ![](Ansible/ansible.cfg) to your /etc/ansible directory
+Download the _ansible.cfg_ configuration file on this website https://ansible.com/  and edit or copy [Ansible Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ansible.cfg) to your /etc/ansible directory
   For ansible.cfg edit:  
     cd /etc/ansible/	
     nano ansible.cfg
@@ -45,12 +42,35 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
+To test the redundancy instances, it is needed to setup a Load Backend Pool for the Virtual Machines Web1 and Web2. Follow this step below :
+
+- Create a Load Balancer 
+  - ![](Images/VM_Config_Screenshot/Create_Load_Balancer.png)
+
+
+- Create the Virtual Machines Web1 and Web2 with Availability Set 
+  - ![](Images/VM_Config_Screenshot/Availability_Set_Web1.jpg) ![](Images/VM_Config_Screenshot/Availability_Set_Web2.jpg)
+
+
+- Create Load Balancer Backend Pool and Add Web1 and Web2 Virtual Machine 
+  - ![](Images/VM_Config_Screenshot/Backend_Pools_Add_Web1_and_Web2.jpg)
+
+
+- Create a Load Balancing Rule 
+  - ![](Images/VM_Config_Screenshot/Load_Balancing_Rules.jpg)
+
+
+- Allow the AzureLoadBalacer Service in Security Group within the Virtual Network 
+  - ![](Images/VM_Config_Screenshot/SecurityGroup_Allow_AzureLoadBalancer_in_Virtual_Network.jpg) 
+
 Load balancing ensures that the application will be highly _available_, in addition to restricting _traffic_ to the network. 
 
 - What aspect of security do load balancers protect? 
+  
   Answer: _Availability, Web Traffic, Web Security_
 
-  What is the advantage of a jump box? 
+- What is the advantage of a jump box? 
+  
   Answer: _Automation, Security, Network Segmentation, Access Control_
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _data_ and system _logs_.
@@ -75,21 +95,23 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _Elk Server_ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: _Workstation Public IP through TCP 5601_
+Only the _Elk Server_ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: 
+- _Workstation Public IP through TCP 5601._
 
-Machines within the network can only be accessed by _Jump-Box-Provisioner_.
--Which machine did you allow to access your ELK VM? What was its IP address?
-_Jump-Box-Provisioner IP : 10.0.0.4 via SSH port 22_ 
-_Workstation Public IP via port TCP 5601_
+Machines within the network can only be accessed by _Workstation_ and _Jump-Box-Provisioner_.
+Which machine did you allow to access your ELK VM? What was its IP address?
+- _Jump-Box-Provisioner IP : 10.0.0.4 via SSH port 22_ 
+- _Workstation Public IP via port TCP 5601_
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible  | Allowed IP Addresses                  |
-|----------|----------------------|---------------------------------------|
-| Jump Box |      No              | Workstation Public IP                 |
-|   Web1   |      Yes             |   Any on Port 80 via Loadbalancer     |
-|   Web2   |      Yes             |   Any on Port 80 via Loadbalancer     |
-|ELK Server|      No              | Workstation Public IP using Port 5601 |
+| Name        | Publicly Accessible  | Allowed IP Addresses                  |
+|-------------|----------------------|---------------------------------------|
+| Jump Box    |      No              | Workstation Public IP on SSH  22      |
+|   Web1      |      No              | 10.0.0.4 on SSH  22                   |
+|   Web2      |      No              | 10.0.0.4 on SSH  22                   |
+|ELK Server   |      No              | Workstation Public IP using TCP  5601 |
+|Load balancer|      No              | Workstation Public IP on  HTTP 80     |   
 
 ### Elk Configuration
 
@@ -124,7 +146,7 @@ The playbook implements the following tasks:
     - `9200:9200`
     - `5044:5044`
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. ![](Images/docker_ps_output.JPG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web1.JPG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web2.JPG). The status should be up.
+The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. ![](Images/docker_ps_output.JPG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web1.PNG) ![](Images/Docker_PS_Ouput/docker_ps_output_Web2.PNG). The status should be up.
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines: _Web1 and Web2_
@@ -144,7 +166,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 
 For ELK VM Configuration: 
-- Copy ![](Ansible/ELK_Stack/install-elk.yml) 
+- Copy the [Ansible ELK Installation and VM Configuration ](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/install-elk.yml) 
 - Run the playbook (`ansible-playbook install-elk.yml`)
 
 For FILEBEAT:
@@ -165,12 +187,15 @@ output.elasticsearch:
 - Run the playbook, (`ansible-playbook filebeat-playbook.yml`) and navigate to _Kibana > Logs : Add log data > System logs > 5:Module Status > Check data_ to check that the installation worked as expected. 
 
 For METRICBEAT: 
-- Download Metricbeat playbook: `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml`
+- Download Metricbeat playbook: 
+  - `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml`
 - Copy the  /etc/ansible/files/metricbeat file to  /etc/metricbeat/metricbeat-playbook.yml
-- Update the filebeat-playbook.yml file to include installer `curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb`
+- Update the filebeat-playbook.yml file to include installer 
+  - `curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb`
 - Update the metricbeat file rename to metricbeat-config.yml 
   
 root@c1e0a059c0b0:/etc/ansible/files# nano metricbeat-config.yml
+  ```bash
 output.elasticsearch:
   #Array of hosts to connect to.
   hosts: ["10.1.0.4:9200"]
@@ -179,7 +204,7 @@ output.elasticsearch:
 
   setup.kibana:
     host: "10.1.0.4:5601"
-
+  ```
 - Run the playbook, (`ansible-playbook metricbeat-playbook.yml`) and navigate to _Kibana > Add Metric Data > Docker Metrics > Module Status_ to check that the installation worked as expected. 
 
 ### ADDITONAL NOTES: 
@@ -192,21 +217,28 @@ How to get the Metricbeat installer:
 2. Copy: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
 
 - Which file is the playbook? Where do you copy it? 
-For FILEBEAT: We will _create_ filbeat-playbook.yml as our playbook.
-  Filebeat Playbook: ![](Ansible/ELK_Stack/filebeat-playbook.yml)
-For METRICBEAT: We will _create_ metricbeat-playbook.yml as our playbook.
-  Metricbeat Playbook: ![](Ansible/ELK_Stack/metricbeat-paybook.yml)
+    - Answer : For FILEBEAT: We will _create_ filbeat-playbook.yml as our playbook.
+
+    [Filebeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/filebeat-playbook.yml) - This is the final solution.
+
+    - Answer: For METRICBEAT: We will _create_ metricbeat-playbook.yml as our playbook.
+  
+    [Metricbeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/metricbeat-paybook.yml) - This is the final solution
 
 - Which file do you update to make Ansible run the playbook on a specific machine? How do I specify  which machine to install the ELK server on versus which to install Filebeat on? 
 
-Download and Edit the Ansible Configuration file 
-root@c1e0a059c0b0:/etc/ansible# curl -L -O https://ansible.com/  > ansible.cfg
-root@c1e0a059c0b0:/etc/ansible# nano ansible.cfg
-    Press CTRL + W (to search > enter remote_user then change `remote_user = sysadmin`
-        
-        Where : `sysadmin` is the remote user that has control over ansible
+  - Download and Edit the Ansible Configuration file 
 
-Edit the Ansible Hosts file:
+    - root@c1e0a059c0b0:/etc/ansible# curl -L -O https://ansible.com/  > ansible.cfg
+    - root@c1e0a059c0b0:/etc/ansible# nano ansible.cfg
+    
+  - Press CTRL + W (to search > enter remote_user then change `remote_user = sysadmin`
+        
+      ``` Where : `sysadmin` is the remote user that has control over ansible. ```
+
+  - Edit the Ansible Hosts file:
+
+```bash
 /etc/ansible/hosts
 #List the IP Addresses of your webservers
 #You should have at least 2 IP addresses
@@ -220,53 +252,60 @@ Edit the Ansible Hosts file:
 #There should only be one IP address
 [elk]
 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+``` 
 
-    Where: [webservers] and [elk] are the group of machines and each group has 1 or more members
+```Where: [webservers] and [elk] are the group of machines and each group has 1 or more members. ```
 
 Create the ELK Installation and VM Configuration : ![](Ansible/ELK_Stack/install-elk.yml) 
 
 - Specify a different group of machines as well as a different remote user 
-      ```bash
+```bash
       - name: Config elk VM with Docker
         hosts: elk
         remote_user: sysadmin
         become: true
         tasks:
+```
+  
+``` Where:  [elk] is the Virtual Machine hosts or the group of machine targetted for this installation and can only be done by a `sysadmin` remote_user ```
 
-    Where:  [elk] is the Virtual Machine hosts or the group of machine targetted for this installation and can only be done by a `sysadmin` remote_user
+Copy the raw Filebeat Module Configuration file from web to the /etc/ansible/files directory: 
+ - `curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml'
+   - Note :  The filebeat-config.yml as our filebeat configuration file. 
 
-
-Copy the Filebeat Module Configuration file to the /etc/ansible/files directory: `curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml`, the filebeat-config.yml as our filebeat configuration file. 
-
-Filebeat Config file: ![](Ansible/filebeat-config.yml)
-
+See the final solution of the [Filebeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/filebeat-config.yml)
+``` bash
 hosts: ["10.1.0.4:9200"]
   username: "elastic"
   password: "changeme" 
 
 setup.kibana:
   host: "10.1.0.4:5601"
+``````
+``` Where: hosts: ["10.1.0.4:9200"] is the ELK VM that can install Filebeat```
 
-    Where: hosts: ["10.1.0.4:9200"] is the ELK VM that can install Filebeat
+Copy the raw Metricbeat Module Configuration from web to  the /etc/ansible/files/ directory:
+ - `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml' 
+    - ``` Note : the metricbeat-config.yml as our metricbeat configuration file. ``` 
 
-Copy Metricbeat Module Configuration `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml`, the metricbeat-config.yml as our metricbeat configuration file. 
+See the final solution of the [Metricbeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/metricbeat-config.yml)
 
-Metricbeat Config file: ![](Ansible/metricbeat-config.yml)
-
+``` bash
 hosts: ["10.1.0.4:9200"]
   username: "elastic"
   password: "changeme" 
 
 setup.kibana:
   host: "10.1.0.4:5601"
-
+``` 
     Where: hosts: ["10.1.0.4:9200"] is the ELK VM that can install Metricbeat
 
 - Which URL do you navigate to in order to check that the ELK server is running? 
-Test Kibana on web : http://[your.ELK-VM.External.IP]:5601/app/kibana_
-Test Kibana on localhost: sysadmin@10.1.0.4: curl localhost:5601/app/kibana_
+  - Test Kibana on web : _http://[your.ELK-VM.External.IP]:5601/app/kibana_
+  - Test Kibana on localhost: _sysadmin@10.1.0.4: curl localhost:5601/app/kibana_
 
 Other Command List : 
+```bash
 `sudo apt-get update` 				                        - this will update all packages
 `sudo apt install docker.io`				                  - install docker application		
 `sudo service docker start`				                    - start the docker application
@@ -278,3 +317,4 @@ Other Command List :
 `sudo docker attach <image-name>`                     - effectively sshing into the ansible container
 `ssh-keygen`                                          - create a ssh key 
 `ansible -m ping all`                                 - check the connection of ansible containers
+```
