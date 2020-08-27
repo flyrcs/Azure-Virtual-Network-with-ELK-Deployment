@@ -70,27 +70,26 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Load Balancer        |Load Balancer | Dynamic IP (Public IP)   | Linux            |
 | Workstation          |Access Control| External IP or PublicIP  | Linux            |
 
-- To test the redundancy instances, it is needed to setup a Load Backend Pool for the Virtual Machines Web1 and Web2. Follow this step below:
+- Follow this step below to create a Load Balancer for Web1 and Web2
 
+  1. [Create a Load Balancer](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/Create_Load_Balancer.png)
 
-  - Create a Load Balancer 
-     ![](Images/VM_Config_Screenshot/Create_Load_Balancer.png)
+  2. [Create the Virtual Machines Web1 with Availability Set](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/Availability_Set_Web1.jpg) 
+  
+  3. [Create the Virtual Machines Web2 with Availability Set](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/Availability_Set_Web2.jpg)
 
+  4. [Create Load Balancer Backend Pool and Add Web1 and Web2 Virtual Machine](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/Backend_Pools_Add_Web1_and_Web2.jpg)
 
-  - Create the Virtual Machines Web1 and Web2 with Availability Set 
-     ![](Images/VM_Config_Screenshot/Availability_Set_Web1.jpg) ![](Images/VM_Config_Screenshot/Availability_Set_Web2.jpg)
+  5. [Create a Load Balancing Rule](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/Load_Balancing_Rules.jpg)
 
+  6. [Allow the AzureLoadBalacer Service in Security Group within the Virtual Network](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/SecurityGroup_Allow_AzureLoadBalancer_in_Virtual_Network.jpg) 
 
-  - Create Load Balancer Backend Pool and Add Web1 and Web2 Virtual Machine 
-     ![](Images/VM_Config_Screenshot/Backend_Pools_Add_Web1_and_Web2.jpg)
-
-
-  - Create a Load Balancing Rule 
-     ![](Images/VM_Config_Screenshot/Load_Balancing_Rules.jpg)
-
-
-  - Allow the AzureLoadBalacer Service in Security Group within the Virtual Network 
-     ![](Images/VM_Config_Screenshot/SecurityGroup_Allow_AzureLoadBalancer_in_Virtual_Network.jpg) 
+- Follow this step to test the instances of the redundancy for Web1 and Web2 Virtual Machine. 
+  1. Verify that the DVWA site is up and running and can be accessed from the web. 
+     - Go to your Chrome browser and type http://[Load-Balancer-External-IP]/setup.php 
+     - See this image if successful : [DVWA Redundancy Test](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/DVWA_Testing_Redundancy.jpg)
+  2. Turn off one of your VMs (Web1 or Web2) from the Azure portal. Confirm if you can still access the DVWA website.
+  3. Finally turning off both VMs making sure there are no access. [See image](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Images/VM_Config_Screenshot/DVWA_Test_Web1_Web2_OFF.jpg)  
 
 ### Access Policies
 
