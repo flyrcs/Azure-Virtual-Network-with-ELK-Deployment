@@ -42,27 +42,6 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-To test the redundancy instances, it is needed to setup a Load Backend Pool for the Virtual Machines Web1 and Web2. Follow this step below :
-
-- Create a Load Balancer 
-  - ![](Images/VM_Config_Screenshot/Create_Load_Balancer.png)
-
-
-- Create the Virtual Machines Web1 and Web2 with Availability Set 
-  - ![](Images/VM_Config_Screenshot/Availability_Set_Web1.jpg) ![](Images/VM_Config_Screenshot/Availability_Set_Web2.jpg)
-
-
-- Create Load Balancer Backend Pool and Add Web1 and Web2 Virtual Machine 
-  - ![](Images/VM_Config_Screenshot/Backend_Pools_Add_Web1_and_Web2.jpg)
-
-
-- Create a Load Balancing Rule 
-  - ![](Images/VM_Config_Screenshot/Load_Balancing_Rules.jpg)
-
-
-- Allow the AzureLoadBalacer Service in Security Group within the Virtual Network 
-  - ![](Images/VM_Config_Screenshot/SecurityGroup_Allow_AzureLoadBalancer_in_Virtual_Network.jpg) 
-
 Load balancing ensures that the application will be highly _available_, in addition to restricting _traffic_ to the network. 
 
 - What aspect of security do load balancers protect? 
@@ -90,6 +69,27 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | ACME-VM1             |ELK Server    | 10.1.0.4 /52.138.103.192 | Linux            |
 | Load Balancer        |Load Balancer | Dynamic IP (Public IP)   | Linux            |
 | Workstation          |Access Control| External IP or PublicIP  | Linux            |
+
+To test the redundancy instances, it is needed to setup a Load Backend Pool for the Virtual Machines Web1 and Web2. Follow this step below:
+
+- Create a Load Balancer 
+     ![](Images/VM_Config_Screenshot/Create_Load_Balancer.png)
+
+
+- Create the Virtual Machines Web1 and Web2 with Availability Set 
+     ![](Images/VM_Config_Screenshot/Availability_Set_Web1.jpg) ![](Images/VM_Config_Screenshot/Availability_Set_Web2.jpg)
+
+
+- Create Load Balancer Backend Pool and Add Web1 and Web2 Virtual Machine 
+     ![](Images/VM_Config_Screenshot/Backend_Pools_Add_Web1_and_Web2.jpg)
+
+
+- Create a Load Balancing Rule 
+     ![](Images/VM_Config_Screenshot/Load_Balancing_Rules.jpg)
+
+
+- Allow the AzureLoadBalacer Service in Security Group within the Virtual Network 
+     ![](Images/VM_Config_Screenshot/SecurityGroup_Allow_AzureLoadBalancer_in_Virtual_Network.jpg) 
 
 ### Access Policies
 
