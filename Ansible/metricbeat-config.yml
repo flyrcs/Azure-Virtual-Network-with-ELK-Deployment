@@ -1,0 +1,7 @@
+### change the information below in the downloaded Metricbeat configuration file
+### Download the Metricbeat configuration file using this command : 
+### /etc/ansible/files# curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml
+
+hosts: ["10.1.0.4:9200"]
+setup.kibana:
+  host: "10.1.0.4:5601"

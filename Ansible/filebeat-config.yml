@@ -1,0 +1,10 @@
+### change the information below in the downloaded filebeat configuration
+### Download the Metricbeat configuration file using this command : 
+### /etc/ansible/files# curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml
+
+hosts: ["10.1.0.4:9200"]
+  username: "elastic"
+  password: "changeme� # TODO: Change this to the password you set
+
+setup.kibana:
+  host: "10.1.0.4:5601"
