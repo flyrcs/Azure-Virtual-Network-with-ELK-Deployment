@@ -178,7 +178,7 @@ For ELK VM Configuration:
 - Run the playbook using this command :  `ansible-playbook install-elk.yml`
 
 For FILEBEAT:
-- Download Filebeat playbook: 
+- Download Filebeat playbook usng this command: 
   - `curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml`
 - Copy the  '/etc/ansible/files/filebeat-config.yml' file to  '/etc/filebeat/filebeat-playbook.yml'
 - Update the filebeat-playbook.yml file to include installer 
@@ -198,14 +198,14 @@ output.elasticsearch:
 - Run the playbook using this command `ansible-playbook filebeat-playbook.yml` and navigate to _Kibana > Logs : Add log data > System logs > 5:Module Status > Check data_ to check that the installation worked as expected. 
 
 For METRICBEAT: 
-- Download Metricbeat playbook: 
+- Download Metricbeat playbook using this command:
   - `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml`
 - Copy the  /etc/ansible/files/metricbeat file to  /etc/metricbeat/metricbeat-playbook.yml
 - Update the filebeat-playbook.yml file to include installer 
   - `curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb`
 - Update the metricbeat file rename to metricbeat-config.yml 
   
-root@c1e0a059c0b0:/etc/ansible/files# nano metricbeat-config.yml
+root@c1e0a059c0b0:/etc/ansible/files# `nano metricbeat-config.yml`
   ```bash
 output.elasticsearch:
   #Array of hosts to connect to.
