@@ -18,7 +18,12 @@ Metricbeat Config file: ![](Ansible/metricbeat-config.yml)
 
 ELK Installation and VM Configuration : ![](Ansible/ELK_Stack/install-elk.yml) 
 
-Download the _ansible.cfg_ configuration file on this website https://ansible.com/  or copy ![](Ansible/ansible.cfg) to your /etc/ansible directory
+Download the _ansible.cfg_ configuration file on this website https://ansible.com/  and edit or copy ![](Ansible/ansible.cfg) to your /etc/ansible directory
+  For ansible.cfg edit:  
+    cd /etc/ansible/	
+    nano ansible.cfg
+    CTRL + W > enter remote_user
+    change `remote_user = sysadmin`
 
 Assign username and SSH Public Key for Web1, Web2, ELK Virtual Machine in Azure GUI
 - Web1 / Web2 / ELK Server  > Reset Password > Reset SSH Public Key
