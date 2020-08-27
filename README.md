@@ -199,6 +199,13 @@ For METRICBEAT: We will _create_ metricbeat-playbook.yml as our playbook.
 
 - Which file do you update to make Ansible run the playbook on a specific machine? How do I specify  which machine to install the ELK server on versus which to install Filebeat on? 
 
+Download and Edit the Ansible Configuration file 
+root@c1e0a059c0b0:/etc/ansible# curl -L -O https://ansible.com/  > ansible.cfg
+root@c1e0a059c0b0:/etc/ansible# nano ansible.cfg
+    Press CTRL + W (to search > enter remote_user then change `remote_user = sysadmin`
+        
+        Where : `sysadmin` is the remote user that has control over ansible
+
 Edit the Ansible Hosts file:
 /etc/ansible/hosts
 #List the IP Addresses of your webservers
