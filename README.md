@@ -318,7 +318,7 @@ setup.kibana:
   - Test Kibana on web : _http://[your.ELK-VM.External.IP]:5601/app/kibana_
   - Test Kibana on localhost: _sysadmin@10.1.0.4: curl localhost:5601/app/kibana_
 
-### Other Command List : 
+### Other Linux Command List : 
 |            COMMAND                               | PURPOSE                                          |
 |--------------------------------------------------|--------------------------------------------------|                         
 |`sudo apt-get update` 				                     |  this will update all packages                   |         
