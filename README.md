@@ -250,10 +250,9 @@ output.elasticsearch:
         
   ``` Where : `sysadmin` is the remote user that has control over ansible. ```
 
-### Edit the Ansible Hosts file:
+### Edit the Ansible Hosts file in this directory /etc/ansible/hosts
 
 ```bash
-/etc/ansible/hosts
 #List the IP Addresses of your webservers
 #You should have at least 2 IP addresses
 
