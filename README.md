@@ -219,22 +219,26 @@ output.elasticsearch:
 - Run the playbook, (`ansible-playbook metricbeat-playbook.yml`) and navigate to _Kibana > Add Metric Data > Docker Metrics > Module Status_ to check that the installation worked as expected. 
 
 ### ADDITONAL NOTES: 
-How to get Filebeat installer : 
+### How to get Filebeat installer : 
 1. Login to Kibana > Add Metric Data > Docker Metric > DEB > Getting Started
 2. Copy: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
 
-How to get the Metricbeat installer:
+### How to get the Metricbeat installer:
 1. Login to Kibana > Add Metric Data > Docker Metrics > DEB > Getting Started
 2. Copy: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
 
 - Which file is the playbook? Where do you copy it? 
+    - Answer : For the ANSIBLE : We will _create_ the my-playbook1.yml as our playbook.
+   
+      See the final solution of the [Ansible Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/my-playbook1.yml) 
+
     - Answer : For FILEBEAT: We will _create_ filbeat-playbook.yml as our playbook.
 
-    [Filebeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/filebeat-playbook.yml) - This is the final solution.
+      See the final solution of the [Filebeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/filebeat-playbook.yml) 
 
     - Answer: For METRICBEAT: We will _create_ metricbeat-playbook.yml as our playbook.
   
-    [Metricbeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/metricbeat-paybook.yml) - This is the final solution
+      See the final solution of the [Metricbeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/metricbeat-paybook.yml) 
 
 - Which file do you update to make Ansible run the playbook on a specific machine? How do I specify  which machine to install the ELK server on versus which to install Filebeat on? 
 
@@ -267,8 +271,8 @@ How to get the Metricbeat installer:
 
 ```Where: [webservers] and [elk] are the group of machines and each group has 1 or more members. ```
 
-Create the ELK Installation and VM Configuration : ![](Ansible/ELK_Stack/install-elk.yml) 
-
+### Create the ELK Installation and VM Configuration in the /etc/ansible/ directory:
+See the final solution of the [Ansible ELK Installation and VM Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/install-elk.yml) 
 - Specify a different group of machines as well as a different remote user 
 ```bash
       - name: Config elk VM with Docker
@@ -292,7 +296,7 @@ hosts: ["10.1.0.4:9200"]
 
 setup.kibana:
   host: "10.1.0.4:5601"
-``````
+```
 ``` Where: hosts: ["10.1.0.4:9200"] is the ELK VM that can install Filebeat```
 
 Copy the raw Metricbeat Module Configuration from web to  the /etc/ansible/files/ directory:
@@ -301,7 +305,7 @@ Copy the raw Metricbeat Module Configuration from web to  the /etc/ansible/files
 
 See the final solution of the [Metricbeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/metricbeat-config.yml)
 
-``` bash
+```bash
 hosts: ["10.1.0.4:9200"]
   username: "elastic"
   password: "changeme" 
@@ -309,8 +313,8 @@ hosts: ["10.1.0.4:9200"]
 setup.kibana:
   host: "10.1.0.4:5601"
 ``` 
-    Where: hosts: ["10.1.0.4:9200"] is the ELK VM that can install Metricbeat
 
+``` Where: hosts: ["10.1.0.4:9200"] is the ELK VM that can install Metricbeat ```
 - Which URL do you navigate to in order to check that the ELK server is running? 
   - Test Kibana on web : _http://[your.ELK-VM.External.IP]:5601/app/kibana_
   - Test Kibana on localhost: _sysadmin@10.1.0.4: curl localhost:5601/app/kibana_
