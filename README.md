@@ -153,7 +153,6 @@ The playbook implements the following tasks:
     ```
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. ![](Images/docker_ps_output.JPG) 
-
 ![](Images/Docker_PS_Ouput/docker_ps_output_Web1.jpg) 
 ![](Images/Docker_PS_Ouput/docker_ps_output_Web2.jpg)
   - The status should be up.
