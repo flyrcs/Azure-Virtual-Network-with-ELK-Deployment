@@ -243,7 +243,7 @@ output.elasticsearch:
       See the final solution of the [Metricbeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/metricbeat-paybook.yml) 
 
 - Which file do you update to make Ansible run the playbook on a specific machine? How do I specify  which machine to install the ELK server on versus which to install Filebeat on? 
-### Download and Edit the Ansible Configuration file 
+### How to Download and Edit the Ansible Configuration file 
 
     - root@c1e0a059c0b0:/etc/ansible# curl -L -O https://ansible.com/  > ansible.cfg
     - root@c1e0a059c0b0:/etc/ansible# nano ansible.cfg
@@ -252,7 +252,7 @@ output.elasticsearch:
         
   ``` Where : `sysadmin` is the remote user that has control over ansible. ```
 
-### Edit the Ansible Hosts file in this directory /etc/ansible/hosts
+### How to Edit the Ansible Hosts file in this directory /etc/ansible/hosts
 
 ```bash
 #List the IP Addresses of your webservers
@@ -271,7 +271,7 @@ output.elasticsearch:
 
 ```Where: [webservers] and [elk] are the group of machines and each group has 1 or more members. ```
 
-### Create the ELK Installation and VM Configuration in the /etc/ansible/ directory:
+### How to Create the ELK Installation and VM Configuration in the /etc/ansible/ directory:
 See the final solution of the [Ansible ELK Installation and VM Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/install-elk.yml) 
 - Specify a different group of machines as well as a different remote user 
 ```bash
@@ -284,7 +284,7 @@ See the final solution of the [Ansible ELK Installation and VM Configuration](ht
 
 ``` Where:  [elk] is the Virtual Machine hosts or the group of machine targetted for this installation and can only be done by a `sysadmin` remote_user ```
 
-### Copy the raw Filebeat Module Configuration file from web to the /etc/ansible/files directory: 
+### How to Copy the raw Filebeat Module Configuration file from web to the /etc/ansible/files directory: 
  - `curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml'
    - Note :  The filebeat-config.yml as our filebeat configuration file. 
 
@@ -299,7 +299,7 @@ setup.kibana:
 ```
 ``` Where: hosts: ["10.1.0.4:9200"] is the ELK VM that can install Filebeat```
 
-### Copy the raw Metricbeat Module Configuration from web to  the /etc/ansible/files/ directory:
+### How to Copy the raw Metricbeat Module Configuration from web to  the /etc/ansible/files/ directory:
  - `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/files/metricbeat-config.yml' 
     - Note : the metricbeat-config.yml as our metricbeat configuration file. ``` 
 
