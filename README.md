@@ -10,10 +10,10 @@ These files have been tested and used to generate a live ELK deployment on Azure
 - [Ansible Hosts](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/hosts)
 - [Ansible Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ansible.cfg)
 - [Ansible ELK Installation and VM Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/install-elk.yml) 
-- [Filebeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/filebeat-playbook.yml)
-- [Filebeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/filebeat-config.yml)
-- [Metricbeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/metricbeat-paybook.yml)
-- [Metricbeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/metricbeat-config.yml)
+- [Ansible Filebeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/filebeat-playbook.yml)
+- [Ansible Filebeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/filebeat-config.yml)
+- [Ansible Metricbeat Playbook](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ELK_Stack/metricbeat-paybook.yml)
+- [Ansible Metricbeat Config file](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/metricbeat-config.yml)
 
 Download the _ansible.cfg_ configuration file on this website https://ansible.com/  and edit or copy [Ansible Configuration](https://github.com/flyrcs/Azure-Virtual-Network-with-ELK-Deployment/blob/master/Ansible/ansible.cfg) to your /etc/ansible directory
   - For ansible.cfg edit:  
@@ -281,7 +281,7 @@ See the final solution of the [Ansible ELK Installation and VM Configuration](ht
         become: true
         tasks:
 ```
-  
+
 ``` Where:  [elk] is the Virtual Machine hosts or the group of machine targetted for this installation and can only be done by a `sysadmin` remote_user ```
 
 ### Copy the raw Filebeat Module Configuration file from web to the /etc/ansible/files directory: 
