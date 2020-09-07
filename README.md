@@ -218,8 +218,9 @@ output.elasticsearch:
   setup.kibana:
     host: "10.1.0.4:5601"
   ```
-- Run the playbook, (`ansible-playbook metricbeat-playbook.yml`) and navigate to _Kibana > Add Metric Data > Docker Metrics > Module Status_ to check that the installation worked as expected. 
-
+- Run the playbook, (`ansible-playbook metricbeat-playbook.yml`) and navigate to _Kibana > Add Metric Data > Docker Metrics > Module Status_ to check that the installation worked as expected.
+--- 
+___
 ### ADDITONAL NOTES: 
 ### How to get Filebeat installer : 
 1. Login to Kibana > Add Metric Data > Docker Metric > DEB > Getting Started
@@ -318,6 +319,9 @@ setup.kibana:
 - Which URL do you navigate to in order to check that the ELK server is running? 
   - Test Kibana on web : _http://[your.ELK-VM.External.IP]:5601/app/kibana_
   - Test Kibana on localhost: _sysadmin@10.1.0.4: curl localhost:5601/app/kibana_
+
+---
+___
 
 ### Other Linux Command List : 
 |            COMMAND                               | PURPOSE                                          |
