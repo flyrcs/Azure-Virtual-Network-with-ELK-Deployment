@@ -223,7 +223,7 @@ output.elasticsearch:
 ___
 ### ADDITONAL NOTES: 
 ### How to get Filebeat installer : 
-1. Login to Kibana > Add Metric Data > Docker Metric > DEB > Getting Started
+1. Login to Kibana > Logs : Add log data > System logs > DEB > Getting started
 2. Copy: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
 
 ### How to get the Metricbeat installer:
