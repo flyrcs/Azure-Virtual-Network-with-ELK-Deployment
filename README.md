@@ -69,7 +69,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Jump-Box-Provisioner | Gateway      | 10.0.0.4 /52.242.18.55   | Linux            |
 | Web1                 |Web Server    | 10.0.0.5                 | Linux            |
 | Web2                 |Web Server    | 10.0.0.6                 | Linux            |
-| ACME-VM1             |ELK Server    | 10.1.0.4 /52.138.103.192 | Linux            |
+| ELK                  |ELK Server    | 10.1.0.4 /52.138.103.192 | Linux            |
 | Load Balancer        |Load Balancer | Static External IP       | Linux            |
 | Workstation          |Access Control| External IP or PublicIP  | Linux            |
 
